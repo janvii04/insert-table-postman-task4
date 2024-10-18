@@ -56,14 +56,32 @@ module.exports = {
           }
         ]
       })
+      
+      res.send(response);
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  },
+
+  findUserByPost: async (req, res)=> {
+    try {
+      let response = await Models.postModel.findAll({
+        include: [
+          {
+            model: Models.userModel,
+            required: false,
+            as: "userPost"
+          }
+        ]
+      })
+      
       res.send(response);
     } catch (error) {
       console.log(error)
       throw error
     }
   }
-
-  
   };
 
  
